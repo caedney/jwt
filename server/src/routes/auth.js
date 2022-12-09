@@ -2,6 +2,8 @@ const Router = require('express-promise-router');
 const bcrypt = require('bcrypt');
 const db = require('../db');
 const jwtGenerator = require('../utils/jwtGenerator');
+const validCredentials = require('../middleware/validCredentials');
+const authorisation = require('../middleware/authorisation');
 
 // create a new express-promise-router
 // this has the same API as the normal express router except
@@ -11,7 +13,7 @@ const router = new Router();
 /**
  * Create new user
  */
-router.post('/register', async (req, res) => {
+router.post('/register', validCredentials, async (req, res) => {
   try {
     const { first_name, last_name, email, password } = req.body;
 
@@ -49,7 +51,7 @@ router.post('/register', async (req, res) => {
 /**
  * Login
  */
-router.post('/login', async (req, res) => {
+router.post('/login', validCredentials, async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -74,6 +76,20 @@ router.post('/login', async (req, res) => {
     const token = jwtGenerator(user.rows[0].id);
 
     return res.json({ token });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500);
+  }
+});
+
+/**
+ * Verify
+ */
+router.get('/verify', authorisation, async (req, res) => {
+  try {
+    return res.json({
+      verified: true,
+    });
   } catch (error) {
     console.log(error.message);
     return res.status(500);
