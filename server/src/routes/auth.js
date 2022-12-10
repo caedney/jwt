@@ -15,7 +15,7 @@ const router = new Router();
  */
 router.post('/register', validCredentials, async (req, res) => {
   try {
-    const { first_name, last_name, email, password } = req.body;
+    const { firstName, lastName, email, password } = req.body;
 
     // Select user with submitted email address
     const checkUser = await db.query('SELECT * FROM users WHERE email = $1', [
@@ -35,7 +35,7 @@ router.post('/register', validCredentials, async (req, res) => {
     // Create new user
     const user = await db.query(
       'INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING *',
-      [first_name, last_name, email, bcryptPassword]
+      [firstName, lastName, email, bcryptPassword]
     );
 
     // Generate new token
@@ -81,9 +81,9 @@ router.post('/login', validCredentials, async (req, res) => {
 });
 
 /**
- * Verify
+ * Verified
  */
-router.get('/verify', authorisation, async (req, res) => {
+router.get('/verified', authorisation, async (req, res) => {
   try {
     return res.json({
       verified: true,
