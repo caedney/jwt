@@ -15,7 +15,6 @@ function authorisation(req, res, next) {
 
     next();
   } catch (error) {
-    console.log(error.message);
     return res.status(403).json('Not Authorised');
   }
 }

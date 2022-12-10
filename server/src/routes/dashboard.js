@@ -17,7 +17,6 @@ router.get('/', authorisation, async (req, res) => {
 
     return res.json(user.rows[0]);
   } catch (error) {
-    console.log(error.message);
     return res.status(500);
   }
 });

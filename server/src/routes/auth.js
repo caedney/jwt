@@ -43,7 +43,6 @@ router.post('/register', validCredentials, async (req, res) => {
 
     return res.json({ token });
   } catch (error) {
-    console.log(error.message);
     return res.status(500);
   }
 });
@@ -77,7 +76,6 @@ router.post('/login', validCredentials, async (req, res) => {
 
     return res.json({ token });
   } catch (error) {
-    console.log(error.message);
     return res.status(500);
   }
 });
@@ -91,7 +89,6 @@ router.get('/verify', authorisation, async (req, res) => {
       verified: true,
     });
   } catch (error) {
-    console.log(error.message);
     return res.status(500);
   }
 });
