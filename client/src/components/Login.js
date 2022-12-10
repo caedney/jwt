@@ -60,7 +60,7 @@ const Login = (props) => {
       </form>
       <div className="text-center my-3">
         <Link className="btn btn-primary" to="/register">
-          Register
+          Sign Up
         </Link>
       </div>
     </>
