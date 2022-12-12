@@ -18,7 +18,7 @@ import useLocalStorage from '../utils/useLocalStoarge';
 
 function App() {
   const [authenticated, setAuthenticated] = React.useState(false);
-  const [token, setToken] = useLocalStorage('jwtToken', '');
+  const [token, setToken] = useLocalStorage('jwtToken');
 
   const authentication = {
     authenticated,
@@ -51,6 +51,7 @@ function App() {
         <div className="container" style={{ maxWidth: '480px' }}>
           <Router>
             <Routes>
+              <Route path="/" element={<Navigate replace to="/login" />} />
               <Route
                 path="/login"
                 element={
