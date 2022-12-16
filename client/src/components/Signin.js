@@ -13,20 +13,17 @@ import MuiTypography from '@mui/material/Typography';
 import authenticationApi from '../api/authentication';
 import AuthenticationContext from '../contexts/AuthenticationContext';
 
-const StyledRegister = styled(MuiContainer)`
+const StyledSignin = styled(MuiContainer)`
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
 
-const Register = () => {
+const Signin = (props) => {
   const { setAuthenticated, setToken } = React.useContext(
     AuthenticationContext
   );
-
-  const [firstName, setFirstName] = React.useState('');
-  const [lastName, setLastName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
@@ -34,16 +31,14 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await authenticationApi.post('/register', {
-        firstName,
-        lastName,
+      const response = await authenticationApi.post('/signin', {
         email,
         password,
       });
 
       setToken(response.data.token);
       setAuthenticated(true);
-      toast('Registration successful', {
+      toast('Sign in successful', {
         type: 'success',
       });
     } catch (error) {
@@ -54,32 +49,10 @@ const Register = () => {
   };
 
   return (
-    <StyledRegister maxWidth="sm" align="center">
-      <MuiTypography variant="h1">Please register</MuiTypography>
+    <StyledSignin maxWidth="sm" align="center">
+      <MuiTypography variant="h1">Please sign in</MuiTypography>
       <MuiFormControl onSubmit={handleSubmit}>
         <MuiFormGroup>
-          <MuiBox display="flex">
-            <MuiInputBase
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              type="text"
-              name="first name"
-              placeholder="First name"
-              style={{ borderBottom: '1px solid #ccc', flexGrow: 1 }}
-            />
-            <MuiInputBase
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              type="text"
-              name="last name"
-              placeholder="Last name"
-              style={{
-                borderBottom: '1px solid #ccc',
-                borderLeft: '1px solid #ccc',
-                flexGrow: 1,
-              }}
-            />
-          </MuiBox>
           <MuiInputBase
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -97,14 +70,14 @@ const Register = () => {
           />
         </MuiFormGroup>
         <MuiButton variant="contained" size="medium">
-          Create Account
+          Sign in
         </MuiButton>
       </MuiFormControl>
       <MuiBox>
-        Already registered ? <MuiLink href="/signin">Sign in here</MuiLink>
+        No account ? <MuiLink href="/register">Create one here</MuiLink>
       </MuiBox>
-    </StyledRegister>
+    </StyledSignin>
   );
 };
 
-export default Register;
+export default Signin;

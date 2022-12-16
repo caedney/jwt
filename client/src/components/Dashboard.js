@@ -1,8 +1,19 @@
 import * as React from 'react';
 import { toast } from 'react-toastify';
+import { styled } from '@mui/material/styles';
+import MuiButton from '@mui/material/Button';
+import MuiContainer from '@mui/material/Container';
+import MuiTypography from '@mui/material/Typography';
 
 import dashboardApi from '../api/dashboard';
 import AuthenticationContext from '../contexts/AuthenticationContext';
+
+const StyledDashboard = styled(MuiContainer)`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 
 const Dashboard = () => {
   const { token, setToken, setAuthenticated } = React.useContext(
@@ -11,7 +22,7 @@ const Dashboard = () => {
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
 
-  const logout = (e) => {
+  const signout = (e) => {
     e.preventDefault();
     setToken('');
     setAuthenticated(false);
@@ -40,17 +51,13 @@ const Dashboard = () => {
   }, [token]);
 
   return (
-    <>
-      <h1 className="text-center my-5">Dashboard</h1>
-      <p className="text-center">
-        Welcome back <strong>{`${firstName} ${lastName}`}</strong>
-      </p>
-      <div className="text-center">
-        <button className="btn btn-primary" onClick={logout}>
-          Logout
-        </button>
-      </div>
-    </>
+    <StyledDashboard maxWidth="sm" align="center">
+      <MuiTypography variant="h1">Welcome back</MuiTypography>
+      <MuiTypography>{`${firstName} ${lastName}`}</MuiTypography>
+      <MuiButton variant="contained" size="medium" onClick={signout}>
+        Sign out
+      </MuiButton>
+    </StyledDashboard>
   );
 };
 
