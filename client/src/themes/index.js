@@ -79,7 +79,13 @@ theme = createTheme(theme, {
     MuiLink: {
       styleOverrides: {
         root: {
-          textDecoration: 'none',
+          'textDecoration': 'none',
+          'transitionProperty': 'color',
+          'transitionDuration': `${theme.transitions.duration.short}ms`,
+          'transitionTimingFunction': theme.transitions.easing.easeInOut,
+          '&:hover': {
+            color: theme.palette.text.primary,
+          },
         },
       },
     },
@@ -88,6 +94,9 @@ theme = createTheme(theme, {
         gutterBottom: true,
       },
       styleOverrides: {
+        gutterBottom: {
+          marginBottom: '0.5em',
+        },
         h1: {
           fontSize: '2.125rem',
           fontWeight: 600,
