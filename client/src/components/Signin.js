@@ -13,14 +13,14 @@ import MuiTypography from '@mui/material/Typography';
 import authenticationApi from '../api/authentication';
 import AuthenticationContext from '../contexts/AuthenticationContext';
 
-const StyledSignin = styled(MuiContainer)`
+const StyledSignIn = styled(MuiContainer)`
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
 
-const Signin = (props) => {
+const SignIn = (props) => {
   const { setAuthenticated, setToken } = React.useContext(
     AuthenticationContext
   );
@@ -31,7 +31,7 @@ const Signin = (props) => {
     e.preventDefault();
 
     try {
-      const response = await authenticationApi.post('/signin', {
+      const response = await authenticationApi.post('/sign-in', {
         email,
         password,
       });
@@ -49,7 +49,7 @@ const Signin = (props) => {
   };
 
   return (
-    <StyledSignin maxWidth="sm" align="center">
+    <StyledSignIn maxWidth="sm" align="center">
       <MuiTypography variant="h1">Please sign in</MuiTypography>
       <MuiFormControl onSubmit={handleSubmit}>
         <MuiFormGroup>
@@ -76,8 +76,8 @@ const Signin = (props) => {
       <MuiBox>
         No account ? <MuiLink href="/register">Create one here</MuiLink>
       </MuiBox>
-    </StyledSignin>
+    </StyledSignIn>
   );
 };
 
-export default Signin;
+export default SignIn;

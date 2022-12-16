@@ -101,7 +101,7 @@ const Register = () => {
         </MuiButton>
       </MuiFormControl>
       <MuiBox>
-        Already registered ? <MuiLink href="/signin">Sign in here</MuiLink>
+        Already registered ? <MuiLink href="/sign-in">Sign in here</MuiLink>
       </MuiBox>
     </StyledRegister>
   );

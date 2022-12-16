@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Dashboard from './components/Dashboard';
-import Signin from './components/Signin';
+import SignIn from './components/SignIn';
 import Register from './components/Register';
 
 import { AuthenticationProvider } from './contexts/AuthenticationContext';
@@ -21,7 +21,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/signin" element={<Signin />} />
+            <Route path="/sign-in" element={<SignIn />} />
           </Routes>
         </Router>
         <ToastContainer />

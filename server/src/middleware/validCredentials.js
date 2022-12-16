@@ -13,7 +13,7 @@ function validCredentials(req, res, next) {
     }
   }
 
-  if (req.path === '/signin') {
+  if (req.path === '/sign-in') {
     if (![email, password].every(Boolean)) {
       return res.status(401).json('Missing Credentials');
     } else if (!validEmail(email)) {
