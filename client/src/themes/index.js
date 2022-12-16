@@ -53,16 +53,6 @@ theme = createTheme(theme, {
         }
       `,
     },
-    MuiFormGroup: {
-      styleOverrides: {
-        root: {
-          marginBottom: '16px',
-          borderRadius: '5px',
-          border: '1px solid #ccc',
-          overflow: 'hidden',
-        },
-      },
-    },
     MuiInputBase: {
       styleOverrides: {
         root: {
@@ -83,6 +73,7 @@ theme = createTheme(theme, {
           'transitionProperty': 'color',
           'transitionDuration': `${theme.transitions.duration.short}ms`,
           'transitionTimingFunction': theme.transitions.easing.easeInOut,
+          'cursor': 'pointer',
           '&:hover': {
             color: theme.palette.text.primary,
           },
