@@ -1,4 +1,5 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import { styled } from '@mui/material/styles';
 import MuiBox from '@mui/material/Box';
 import MuiIconButton from '@mui/material/IconButton';
@@ -14,8 +15,8 @@ const StyledPasswordInput = styled(MuiBox)`
     .PasswordInput-input {
       border: 1px solid #ccc;
       border-top: none;
-      border-bottom-left-radius: 5px;
-      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
       width: 100%;
 
       .MuiInputBase-input {
@@ -30,12 +31,14 @@ const StyledPasswordInput = styled(MuiBox)`
       right: 8px;
       top: 50%;
       transform: translateY(-50%);
+      z-index: 1;
     }
   }
 `;
 
 const PasswordInput = (props) => {
   const { className, onChange, value, ...other } = props;
+
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((visible) => !visible);
@@ -45,7 +48,10 @@ const PasswordInput = (props) => {
   };
 
   return (
-    <StyledPasswordInput className="PasswordInput-root" {...other}>
+    <StyledPasswordInput
+      className={clsx('PasswordInput-root', className)}
+      {...other}
+    >
       <MuiInputBase
         className="PasswordInput-input"
         value={value}

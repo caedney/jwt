@@ -31,7 +31,7 @@ const StyledRegister = styled(MuiContainer)`
       flex-grow: 1;
       border: 1px solid #ccc;
       border-right: none;
-      border-top-left-radius: 5px;
+      border-top-left-radius: 6px;
 
       .MuiInputBase-input {
         border-top-left-radius: 5px;
@@ -41,7 +41,7 @@ const StyledRegister = styled(MuiContainer)`
     .Register-lastNameInput {
       flex-grow: 1;
       border: 1px solid #ccc;
-      border-top-right-radius: 5px;
+      border-top-right-radius: 6px;
 
       .MuiInputBase-input {
         border-top-right-radius: 5px;
