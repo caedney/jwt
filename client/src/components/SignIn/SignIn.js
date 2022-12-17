@@ -84,7 +84,7 @@ const SignIn = (props) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </MuiBox>
-        <MuiButton variant="contained" size="medium">
+        <MuiButton variant="contained" size="medium" type="submit">
           Sign in
         </MuiButton>
       </form>

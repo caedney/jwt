@@ -25,6 +25,9 @@ theme = createTheme(theme, {
       dark: '#276fdb',
     },
   },
+  shape: {
+    borderRadius: 6,
+  },
   components: {
     MuiButton: {
       defaultProps: { disableElevation: true },

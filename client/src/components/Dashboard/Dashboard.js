@@ -9,16 +9,26 @@ import dashboardApi from '../../api/dashboard';
 import AuthenticationContext from '../../contexts/AuthenticationContext';
 
 const StyledDashboard = styled(MuiContainer)`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  &.Dashboard-root {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .Dashboard-welcome {
+      font-size: 1.5rem;
+      margin-bottom: 1em;
+    }
+  }
 `;
 
 const Dashboard = () => {
-  const { token, setToken, setAuthenticated } = React.useContext(
+  const { token, setToken, authenticated, setAuthenticated } = React.useContext(
     AuthenticationContext
   );
+
+  const navigate = useNavigate();
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
 
@@ -46,10 +56,16 @@ const Dashboard = () => {
     getName();
   }, [token]);
 
+  if (!authenticated) {
+    return <Navigate replace to="/sign-in" />;
+  }
+
   return (
-    <StyledDashboard maxWidth="sm" align="center">
-      <MuiTypography variant="h1">Welcome back</MuiTypography>
-      <MuiTypography>{`${firstName} ${lastName}`}</MuiTypography>
+    <StyledDashboard className="Dashboard-root" maxWidth="sm" align="center">
+      <MuiTypography variant="h1">Dashboard</MuiTypography>
+      <MuiTypography className="Dashboard-welcome">
+        Welcome <strong>{`${firstName} ${lastName}`}</strong>
+      </MuiTypography>
       <MuiButton variant="contained" size="medium" onClick={signout}>
         Sign out
       </MuiButton>

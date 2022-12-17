@@ -121,7 +121,7 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </MuiBox>
-        <MuiButton variant="contained" size="medium">
+        <MuiButton variant="contained" size="medium" type="submit">
           Create Account
         </MuiButton>
       </form>
