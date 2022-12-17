@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { styled } from '@mui/material/styles';
 import MuiButton from '@mui/material/Button';
 import MuiBox from '@mui/material/Box';
@@ -46,7 +45,6 @@ const SignIn = (props) => {
   );
 
   const navigate = useNavigate();
-
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
@@ -59,15 +57,12 @@ const SignIn = (props) => {
         password,
       });
 
+      console.log('Sign in successful');
       setToken(response.data.token);
       setAuthenticated(true);
-      toast('Sign in successful', {
-        type: 'success',
-      });
+      navigate('/');
     } catch (error) {
-      toast(error.response.data, {
-        type: 'error',
-      });
+      console.log(error);
     }
   };
 

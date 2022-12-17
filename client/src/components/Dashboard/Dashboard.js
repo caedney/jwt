@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { toast } from 'react-toastify';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import MuiButton from '@mui/material/Button';
 import MuiContainer from '@mui/material/Container';
@@ -26,9 +26,7 @@ const Dashboard = () => {
     e.preventDefault();
     setToken('');
     setAuthenticated(false);
-    toast('User logged out', {
-      type: 'success',
-    });
+    navigate('/sign-in');
   };
 
   React.useEffect(() => {
@@ -41,9 +39,7 @@ const Dashboard = () => {
         setFirstName(response.data.first_name);
         setLastName(response.data.last_name);
       } catch (error) {
-        toast(error.response.data, {
-          type: 'error',
-        });
+        console.log(error);
       }
     }
 
