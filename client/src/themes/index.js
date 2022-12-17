@@ -1,4 +1,4 @@
-import { createTheme, css } from '@mui/material/styles';
+import { createTheme, css, alpha } from '@mui/material/styles';
 
 let theme = createTheme({
   typography: {
@@ -22,7 +22,7 @@ theme = createTheme(theme, {
     mode: 'light',
     primary: {
       main: '#2d7cf6',
-      dark: '#1f70eb',
+      dark: '#276fdb',
     },
   },
   components: {
@@ -30,8 +30,12 @@ theme = createTheme(theme, {
       defaultProps: { disableElevation: true },
       styleOverrides: {
         root: {
-          textTransform: 'none',
-          marginBottom: '16px',
+          'textTransform': 'none',
+          'marginBottom': '16px',
+          '&:focus-visible': {
+            outline: 'none',
+            boxShadow: `0 0 0 4px ${alpha(theme.palette.primary.main, 0.25)}`,
+          },
         },
         sizeMedium: {
           fontSize: '1.0625rem',
@@ -40,6 +44,14 @@ theme = createTheme(theme, {
     },
     MuiButtonBase: {
       defaultProps: { disableRipple: true },
+      styleOverrides: {
+        root: {
+          '&:focus-visible': {
+            outline: 'none',
+            boxShadow: `0 0 0 4px ${alpha(theme.palette.primary.main, 0.25)}`,
+          },
+        },
+      },
     },
     MuiCssBaseline: {
       styleOverrides: css`
@@ -53,15 +65,31 @@ theme = createTheme(theme, {
         }
       `,
     },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          transitionProperty:
+            'background-color, box-shadow, border-color, color',
+        },
+      },
+    },
     MuiInputBase: {
       styleOverrides: {
         root: {
           backgroundColor: 'rgba(255, 255, 255, 1)',
         },
         input: {
+          'transitionProperty': 'box-shadow',
+          'transitionDuration': `${theme.transitions.duration.short}ms`,
+          'transitionTimingFunction': theme.transitions.easing.easeInOut,
           'padding': '12px 16px',
           '&::-webkit-input-placeholder': {
             opacity: 0.56,
+          },
+          '&:focus-visible': {
+            outline: 'none',
+            boxShadow: `0 0 0 4px ${alpha(theme.palette.primary.main, 0.25)}`,
+            zIndex: 1,
           },
         },
       },
@@ -70,12 +98,17 @@ theme = createTheme(theme, {
       styleOverrides: {
         root: {
           'textDecoration': 'none',
-          'transitionProperty': 'color',
+          'transitionProperty': 'color, box-shadow',
           'transitionDuration': `${theme.transitions.duration.short}ms`,
           'transitionTimingFunction': theme.transitions.easing.easeInOut,
           'cursor': 'pointer',
           '&:hover': {
             color: theme.palette.text.primary,
+          },
+          '&:focus-visible': {
+            outline: 'none',
+            borderRadius: '3px',
+            boxShadow: `0 0 0 2px ${alpha(theme.palette.primary.main, 0.25)}`,
           },
         },
       },

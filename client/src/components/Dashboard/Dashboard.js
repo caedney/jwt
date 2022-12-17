@@ -5,8 +5,8 @@ import MuiButton from '@mui/material/Button';
 import MuiContainer from '@mui/material/Container';
 import MuiTypography from '@mui/material/Typography';
 
-import dashboardApi from '../api/dashboard';
-import AuthenticationContext from '../contexts/AuthenticationContext';
+import dashboardApi from '../../api/dashboard';
+import AuthenticationContext from '../../contexts/AuthenticationContext';
 
 const StyledDashboard = styled(MuiContainer)`
   height: 100vh;

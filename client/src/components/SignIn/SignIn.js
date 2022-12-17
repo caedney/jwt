@@ -5,17 +5,14 @@ import { styled } from '@mui/material/styles';
 import MuiButton from '@mui/material/Button';
 import MuiBox from '@mui/material/Box';
 import MuiContainer from '@mui/material/Container';
-import MuiIconButton from '@mui/material/IconButton';
-import MuiInputAdornment from '@mui/material/InputAdornment';
 import MuiInputBase from '@mui/material/InputBase';
 import MuiLink from '@mui/material/Link';
-import MuiSvgIcon from '@mui/material/SvgIcon';
 import MuiTypography from '@mui/material/Typography';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-import authenticationApi from '../api/authentication';
-import AuthenticationContext from '../contexts/AuthenticationContext';
+import PasswordInput from '../PasswordInput';
+
+import authenticationApi from '../../api/authentication';
+import AuthenticationContext from '../../contexts/AuthenticationContext';
 
 const StyledSignIn = styled(MuiContainer)`
   &.SignIn-root {
@@ -26,11 +23,19 @@ const StyledSignIn = styled(MuiContainer)`
 
     .SignIn-inputGroup {
       margin-bottom: 16px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      overflow: hidden;
       display: flex;
       flex-direction: column;
+    }
+
+    .SignIn-emailInput {
+      border: 1px solid #ccc;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+
+      .MuiInputBase-input {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
     }
   }
 `;
@@ -44,13 +49,6 @@ const SignIn = (props) => {
 
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [showPassword, setShowPassword] = React.useState(false);
-
-  const handleClickShowPassword = () => setShowPassword((visible) => !visible);
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,36 +77,16 @@ const SignIn = (props) => {
       <form onSubmit={handleSubmit}>
         <MuiBox className="SignIn-inputGroup">
           <MuiInputBase
+            className="SignIn-emailInput"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             name="email"
             placeholder="Email address"
-            style={{ borderBottom: '1px solid #ccc' }}
           />
-          <MuiInputBase
+          <PasswordInput
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            type={showPassword ? 'text' : 'password'}
-            name="password"
-            placeholder="Password"
-            endAdornment={
-              <MuiInputAdornment position="start">
-                <MuiIconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  color="primary"
-                >
-                  <MuiSvgIcon
-                    fontSize="small"
-                    component={
-                      showPassword ? VisibilityOffIcon : VisibilityIcon
-                    }
-                  />
-                </MuiIconButton>
-              </MuiInputAdornment>
-            }
           />
         </MuiBox>
         <MuiButton variant="contained" size="medium">
@@ -118,7 +96,9 @@ const SignIn = (props) => {
       <MuiBox>
         No account ?{' '}
         <MuiLink
-          onClick={() => {
+          href="/register"
+          onClick={(e) => {
+            e.preventDefault();
             navigate('/register');
           }}
         >
