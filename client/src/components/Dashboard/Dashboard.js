@@ -32,13 +32,6 @@ const Dashboard = () => {
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
 
-  const signout = (e) => {
-    e.preventDefault();
-    setToken('');
-    setAuthenticated(false);
-    navigate('/sign-in');
-  };
-
   React.useEffect(() => {
     async function getName() {
       try {
@@ -59,6 +52,13 @@ const Dashboard = () => {
   if (!authenticated) {
     return <Navigate replace to="/sign-in" />;
   }
+
+  const signout = (e) => {
+    e.preventDefault();
+    setToken('');
+    setAuthenticated(false);
+    navigate('/sign-in');
+  };
 
   return (
     <StyledDashboard className="Dashboard-root" maxWidth="sm" align="center">

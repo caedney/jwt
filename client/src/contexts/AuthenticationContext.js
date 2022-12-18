@@ -6,7 +6,8 @@ const AuthenticationContext = React.createContext();
 
 export const AuthenticationProvider = (props) => {
   const { children } = props;
-  const [authenticated, setAuthenticated] = React.useState(false);
+
+  const [authenticated, setAuthenticated] = React.useState();
   const [token, setToken] = useLocalStorage('jwtToken');
 
   const authentication = {
@@ -26,11 +27,16 @@ export const AuthenticationProvider = (props) => {
         setAuthenticated(response.data.verified);
       } catch (error) {
         console.log(error);
+        setAuthenticated(false);
       }
     }
 
     isAuthenticated();
   }, [token]);
+
+  if (typeof authenticated !== 'boolean') {
+    return null;
+  }
 
   return (
     <AuthenticationContext.Provider value={authentication}>

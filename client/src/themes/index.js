@@ -105,12 +105,12 @@ theme = createTheme(theme, {
           'transitionDuration': `${theme.transitions.duration.short}ms`,
           'transitionTimingFunction': theme.transitions.easing.easeInOut,
           'cursor': 'pointer',
+          'borderRadius': '3px',
           '&:hover': {
             color: theme.palette.text.primary,
           },
           '&:focus-visible': {
             outline: 'none',
-            borderRadius: '3px',
             boxShadow: `0 0 0 2px ${alpha(theme.palette.primary.main, 0.25)}`,
           },
         },
