@@ -31,6 +31,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
+  const [email, setEmail] = React.useState('');
 
   React.useEffect(() => {
     async function getName() {
@@ -41,6 +42,7 @@ const Dashboard = () => {
 
         setFirstName(response.data.first_name);
         setLastName(response.data.last_name);
+        setEmail(response.data.email);
       } catch (error) {
         console.log(error);
       }
@@ -62,10 +64,8 @@ const Dashboard = () => {
 
   return (
     <StyledDashboard className="Dashboard-root" maxWidth="sm" align="center">
-      <MuiTypography variant="h1">Dashboard</MuiTypography>
-      <MuiTypography className="Dashboard-welcome">
-        Welcome <strong>{`${firstName} ${lastName}`}</strong>
-      </MuiTypography>
+      <MuiTypography variant="h1">{`Welcome ${firstName} ${lastName}`}</MuiTypography>
+      <MuiTypography className="Dashboard-welcome">{email}</MuiTypography>
       <MuiButton variant="contained" size="medium" onClick={signout}>
         Sign out
       </MuiButton>
