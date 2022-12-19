@@ -49,16 +49,16 @@ const Dashboard = () => {
     getName();
   }, [token]);
 
-  if (!authenticated) {
-    return <Navigate replace to="/sign-in" />;
-  }
-
   const signout = (e) => {
     e.preventDefault();
     setToken('');
     setAuthenticated(false);
     navigate('/sign-in');
   };
+
+  if (!authenticated) {
+    return <Navigate replace to="/sign-in" />;
+  }
 
   return (
     <StyledDashboard className="Dashboard-root" maxWidth="sm" align="center">

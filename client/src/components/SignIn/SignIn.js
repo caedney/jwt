@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import MuiButton from '@mui/material/Button';
 import MuiBox from '@mui/material/Box';
@@ -40,7 +40,7 @@ const StyledSignIn = styled(MuiContainer)`
 `;
 
 const SignIn = (props) => {
-  const { setAuthenticated, setToken } = React.useContext(
+  const { authenticated, setAuthenticated, setToken } = React.useContext(
     AuthenticationContext
   );
 
@@ -65,6 +65,10 @@ const SignIn = (props) => {
       console.log(error);
     }
   };
+
+  if (authenticated) {
+    return <Navigate replace to="/" />;
+  }
 
   return (
     <StyledSignIn className="SignIn-root" maxWidth="sm" align="center">
