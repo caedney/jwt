@@ -20,11 +20,17 @@ export const AuthenticationProvider = (props) => {
   React.useEffect(() => {
     async function isAuthenticated() {
       try {
-        const response = await authenticationApi.get('/verified', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        let verified = false;
 
-        setAuthenticated(response.data.verified);
+        if (token) {
+          const response = await authenticationApi.get('/verify', {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+
+          verified = response.data.verified;
+        }
+
+        setAuthenticated(verified);
       } catch (error) {
         console.log(error);
         setAuthenticated(false);
