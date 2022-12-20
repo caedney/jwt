@@ -21,7 +21,7 @@ export const AuthenticationProvider = (props) => {
     async function isAuthenticated() {
       try {
         const response = await authenticationApi.get('/verified', {
-          headers: { token },
+          headers: { Authorization: `Bearer ${token}` },
         });
 
         setAuthenticated(response.data.verified);

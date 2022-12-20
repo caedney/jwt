@@ -37,7 +37,7 @@ const Dashboard = () => {
     async function getName() {
       try {
         const response = await dashboardApi.get('/', {
-          headers: { token },
+          headers: { Authorization: `Bearer ${token}` },
         });
 
         setFirstName(response.data.first_name);
