@@ -1,9 +1,9 @@
 const Router = require('express-promise-router');
 const bcrypt = require('bcrypt');
 const db = require('../db');
-const jwtGenerator = require('../utils/jwtGenerator');
-const validCredentials = require('../middleware/validCredentials');
-const authorisation = require('../middleware/authorisation');
+const tokenGenerator = require('../utils/tokenGenerator');
+const verifyCredentials = require('../middleware/verifyCredentials');
+const verifyToken = require('../middleware/verifyToken');
 
 // create a new express-promise-router
 // this has the same API as the normal express router except
@@ -13,7 +13,7 @@ const router = new Router();
 /**
  * Create new user
  */
-router.post('/register', validCredentials, async (req, res) => {
+router.post('/register', verifyCredentials, async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
 
@@ -39,7 +39,7 @@ router.post('/register', validCredentials, async (req, res) => {
     );
 
     // Generate new token
-    const token = jwtGenerator(user.rows[0].id);
+    const token = tokenGenerator(user.rows[0].id);
 
     return res.json({ token });
   } catch (error) {
@@ -50,7 +50,7 @@ router.post('/register', validCredentials, async (req, res) => {
 /**
  * Sign in
  */
-router.post('/sign-in', validCredentials, async (req, res) => {
+router.post('/sign-in', verifyCredentials, async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -61,18 +61,24 @@ router.post('/sign-in', validCredentials, async (req, res) => {
 
     // Return Unauthenticated status code if user doesn't exist
     if (user.rows.length < 1) {
-      return res.status(401).json('Email or Password is incorrect');
+      return res.status(404).send({ message: 'User Not found.' });
     }
 
     // Check if the password matches in database
-    const validPassword = await bcrypt.compare(password, user.rows[0].password);
+    const passwordIsValid = await bcrypt.compare(
+      password,
+      user.rows[0].password
+    );
 
-    if (!validPassword) {
-      return res.status(401).json('Email or Password is incorrect');
+    if (!passwordIsValid) {
+      return res.status(401).send({
+        accessToken: null,
+        message: 'Invalid Password!',
+      });
     }
 
     // Generate new token
-    const token = jwtGenerator(user.rows[0].id);
+    const token = tokenGenerator(user.rows[0].id);
 
     return res.json({ token });
   } catch (error) {
@@ -83,7 +89,7 @@ router.post('/sign-in', validCredentials, async (req, res) => {
 /**
  * Verified
  */
-router.get('/verified', authorisation, async (req, res) => {
+router.get('/verified', verifyToken, async (req, res) => {
   try {
     return res.json({
       verified: true,

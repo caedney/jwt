@@ -1,13 +1,13 @@
 const Router = require('express-promise-router');
 const db = require('../db');
-const authorisation = require('../middleware/authorisation');
+const verifyToken = require('../middleware/verifyToken');
 
 // create a new express-promise-router
 // this has the same API as the normal express router except
 // it allows you to use async functions as route handlers
 const router = new Router();
 
-router.get('/', authorisation, async (req, res) => {
+router.get('/', verifyToken, async (req, res) => {
   try {
     // Select user with user id
     const user = await db.query(
