@@ -4,9 +4,13 @@ const morgan = require('morgan');
 const auth = require('./auth');
 const dashboard = require('./dashboard');
 
+var corsOptions = {
+  origin: 'http://localhost:3000',
+};
+
 const routes = (app) => {
   // Middleware
-  app.use(cors());
+  app.use(cors(corsOptions));
   app.use(morgan('dev'));
   app.use(express.json());
   // API

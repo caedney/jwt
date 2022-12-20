@@ -77,7 +77,7 @@ const Register = () => {
       });
 
       console.log('Registration successful');
-      setToken(response.data.token);
+      setToken(response.data.accessToken);
       setAuthenticated(true);
       navigate('/');
     } catch (error) {

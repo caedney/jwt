@@ -39,9 +39,15 @@ router.post('/register', verifyCredentials, async (req, res) => {
     );
 
     // Generate new token
-    const token = tokenGenerator(user.rows[0].id);
+    const accessToken = tokenGenerator(user.rows[0].id);
 
-    return res.json({ token });
+    return res.json({
+      id: user.rows[0].id,
+      first_name: user.rows[0].first_name,
+      last_name: user.rows[0].last_name,
+      email: user.rows[0].email,
+      accessToken,
+    });
   } catch (error) {
     return res.status(500);
   }
@@ -65,22 +71,28 @@ router.post('/sign-in', verifyCredentials, async (req, res) => {
     }
 
     // Check if the password matches in database
-    const passwordIsValid = await bcrypt.compare(
+    const isPasswordValid = await bcrypt.compare(
       password,
       user.rows[0].password
     );
 
-    if (!passwordIsValid) {
+    if (isPasswordValid === false) {
       return res.status(401).send({
         accessToken: null,
-        message: 'Invalid Password!',
+        message: 'Password is invalid!',
       });
     }
 
     // Generate new token
-    const token = tokenGenerator(user.rows[0].id);
+    const accessToken = tokenGenerator(user.rows[0].id);
 
-    return res.json({ token });
+    return res.json({
+      id: user.rows[0].id,
+      first_name: user.rows[0].first_name,
+      last_name: user.rows[0].last_name,
+      email: user.rows[0].email,
+      accessToken,
+    });
   } catch (error) {
     return res.status(500);
   }
@@ -89,7 +101,7 @@ router.post('/sign-in', verifyCredentials, async (req, res) => {
 /**
  * Verified
  */
-router.get('/verified', verifyToken, async (req, res) => {
+router.get('/verify', verifyToken, async (req, res) => {
   try {
     return res.json({
       verified: true,

@@ -11,7 +11,7 @@ router.get('/', verifyToken, async (req, res) => {
   try {
     // Select user with user id
     const user = await db.query(
-      'SELECT first_name, last_name, email FROM users WHERE id = $1',
+      'SELECT id, first_name, last_name, email FROM users WHERE id = $1',
       [req.user]
     );
 

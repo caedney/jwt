@@ -58,7 +58,7 @@ const SignIn = (props) => {
       });
 
       console.log('Sign in successful');
-      setToken(response.data.token);
+      setToken(response.data.accessToken);
       setAuthenticated(true);
       navigate('/');
     } catch (error) {
