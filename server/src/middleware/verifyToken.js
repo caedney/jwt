@@ -16,8 +16,8 @@ function verifyToken(req, res, next) {
     const accessToken = req.headers['authorization'];
     const bearer = new RegExp(/^Bearer\s(.+)/);
 
-    if (bearer.test(accessToken) === false) {
-      return res.status(401).send({ message: 'Unauthenticated!' });
+    if (!bearer.test(accessToken)) {
+      return res.status(401).send({ message: 'Invalid token!' });
     }
 
     const token = accessToken.replace(bearer, '$1');

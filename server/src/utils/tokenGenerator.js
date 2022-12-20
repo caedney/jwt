@@ -6,7 +6,7 @@ function tokenGenerator(id) {
     user: id,
   };
 
-  return jwt.sign(payload, process.env.SECRET, { expiresIn: 86400 }); // 24hrs
+  return jwt.sign(payload, process.env.SECRET, { expiresIn: '1d' });
 }
 
 module.exports = tokenGenerator;

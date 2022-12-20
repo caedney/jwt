@@ -9,7 +9,7 @@ function verifyCredentials(req, res, next) {
     if (![email, firstName, lastName, password].every(Boolean)) {
       return res.status(401).json('Missing Credentials');
     } else if (isValidEmail(email) === false) {
-      return res.status(401).json('Email is invalid');
+      return res.status(401).json('Invalid email');
     }
   }
 
@@ -17,7 +17,7 @@ function verifyCredentials(req, res, next) {
     if (![email, password].every(Boolean)) {
       return res.status(401).json('Missing Credentials');
     } else if (isValidEmail(email) === false) {
-      return res.status(401).json('Email is invalid');
+      return res.status(401).json('Invalid email');
     }
   }
 

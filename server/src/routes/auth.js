@@ -79,7 +79,7 @@ router.post('/sign-in', verifyCredentials, async (req, res) => {
     if (isPasswordValid === false) {
       return res.status(401).send({
         accessToken: null,
-        message: 'Password is invalid!',
+        message: 'Invalid password!',
       });
     }
 
