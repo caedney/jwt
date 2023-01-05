@@ -48,8 +48,8 @@ const StyledRegister = styled(MuiContainer)`
     }
 
     .Register-emailInput {
-      border: 1px solid #ccc;
-      border-top: none;
+      border-left: 1px solid #ccc;
+      border-right: 1px solid #ccc;
     }
   }
 `;

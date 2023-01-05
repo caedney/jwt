@@ -17,7 +17,6 @@ const StyledPasswordInput = styled(MuiBox)`
 
     .PasswordInput-input {
       border: 1px solid #ccc;
-      border-top: none;
       border-bottom-left-radius: 6px;
       border-bottom-right-radius: 6px;
       width: 100%;

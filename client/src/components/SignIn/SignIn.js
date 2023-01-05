@@ -28,6 +28,7 @@ const StyledSignIn = styled(MuiContainer)`
 
     .SignIn-emailInput {
       border: 1px solid #ccc;
+      border-bottom: none;
       border-top-left-radius: 6px;
       border-top-right-radius: 6px;
 

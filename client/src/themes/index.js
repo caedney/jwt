@@ -86,6 +86,7 @@ theme = createTheme(theme, {
           'transitionProperty': 'box-shadow',
           'transitionDuration': `${theme.transitions.duration.short}ms`,
           'transitionTimingFunction': theme.transitions.easing.easeInOut,
+          'height': '1.5em',
           'padding': '12px 16px',
           '&::-webkit-input-placeholder': {
             opacity: 0.56,
