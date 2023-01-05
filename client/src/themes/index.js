@@ -42,6 +42,7 @@ theme = createTheme(theme, {
         },
         sizeMedium: {
           fontSize: '1.0625rem',
+          padding: '6px 20px',
         },
       },
     },
