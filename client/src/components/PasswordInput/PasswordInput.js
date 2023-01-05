@@ -5,6 +5,9 @@ import MuiBox from '@mui/material/Box';
 import MuiIconButton from '@mui/material/IconButton';
 import MuiInputBase from '@mui/material/InputBase';
 import MuiSvgIcon from '@mui/material/SvgIcon';
+
+import Tooltip from '../Tooltip';
+
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
@@ -60,17 +63,22 @@ const PasswordInput = (props) => {
         name="password"
         placeholder="Password"
       />
-      <MuiIconButton
-        aria-label="toggle password visibility"
-        onClick={handleClickShowPassword}
-        onMouseDown={handleMouseDownPassword}
-        color="primary"
+      <Tooltip
+        placement="top"
+        title={showPassword ? 'Hide password' : 'Show password'}
       >
-        <MuiSvgIcon
-          fontSize="small"
-          component={showPassword ? VisibilityOffIcon : VisibilityIcon}
-        />
-      </MuiIconButton>
+        <MuiIconButton
+          aria-label="toggle password visibility"
+          onClick={handleClickShowPassword}
+          onMouseDown={handleMouseDownPassword}
+          color="primary"
+        >
+          <MuiSvgIcon
+            fontSize="small"
+            component={showPassword ? VisibilityOffIcon : VisibilityIcon}
+          />
+        </MuiIconButton>
+      </Tooltip>
     </StyledPasswordInput>
   );
 };

@@ -117,6 +117,14 @@ theme = createTheme(theme, {
         },
       },
     },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: 'rgba(0, 0, 0, 0.6)',
+          borderRadius: '4px',
+        },
+      },
+    },
     MuiTypography: {
       defaultProps: {
         gutterBottom: true,
