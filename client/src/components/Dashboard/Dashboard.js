@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import MuiButton from '@mui/material/Button';
 import MuiContainer from '@mui/material/Container';
 import MuiTypography from '@mui/material/Typography';
 
+import Button from '../Button';
 import dashboardApi from '../../api/dashboard';
 import AuthenticationContext from '../../contexts/AuthenticationContext';
 
@@ -66,9 +66,9 @@ const Dashboard = () => {
     <StyledDashboard className="Dashboard-root" maxWidth="sm" align="center">
       <MuiTypography variant="h1">{`Welcome ${firstName} ${lastName}`}</MuiTypography>
       <MuiTypography className="Dashboard-welcome">{email}</MuiTypography>
-      <MuiButton variant="contained" size="medium" onClick={signout}>
+      <Button variant="contained" size="medium" onClick={signout}>
         Sign out
-      </MuiButton>
+      </Button>
     </StyledDashboard>
   );
 };

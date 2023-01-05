@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import MuiButton from '@mui/material/Button';
 import MuiBox from '@mui/material/Box';
 import MuiContainer from '@mui/material/Container';
 import MuiInputBase from '@mui/material/InputBase';
 import MuiLink from '@mui/material/Link';
 import MuiTypography from '@mui/material/Typography';
 
+import Button from '../Button';
 import PasswordInput from '../PasswordInput';
 
 import authenticationApi from '../../api/authentication';
@@ -121,9 +121,9 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </MuiBox>
-        <MuiButton variant="contained" size="medium" type="submit">
+        <Button variant="contained" size="medium" type="submit">
           Create Account
-        </MuiButton>
+        </Button>
       </form>
       <MuiBox>
         Already registered ?{' '}
