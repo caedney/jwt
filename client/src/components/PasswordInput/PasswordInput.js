@@ -15,7 +15,7 @@ const StyledPasswordInput = styled(MuiBox)`
   &.PasswordInput-root {
     position: relative;
 
-    .PasswordInput-input {
+    .MuiInputBase-root {
       border: 1px solid #ccc;
       border-bottom-left-radius: 6px;
       border-bottom-right-radius: 6px;
@@ -30,7 +30,7 @@ const StyledPasswordInput = styled(MuiBox)`
 
     .MuiIconButton-root {
       position: absolute;
-      right: 8px;
+      right: 9px;
       top: 50%;
       transform: translateY(-50%);
       z-index: 1;
@@ -55,7 +55,6 @@ const PasswordInput = (props) => {
       {...other}
     >
       <MuiInputBase
-        className="PasswordInput-input"
         value={value}
         onChange={onChange}
         type={showPassword ? 'text' : 'password'}
