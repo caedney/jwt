@@ -10,4 +10,4 @@ CREATE TABLE users(
 	password VARCHAR(100) NOT NULL
 );
 
-INSERT INTO users (first_name, last_name, email, password) VALUES ('Craig', 'Edney', 'caedney@btinternet.com', 'test123');
+INSERT INTO users (first_name, last_name, email, password) VALUES ('Craig', 'Edney', 'caedney@btinternet.com', 'password');
