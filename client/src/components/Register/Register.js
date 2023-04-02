@@ -14,43 +14,48 @@ import authenticationApi from '../../api/authentication';
 import AuthenticationContext from '../../contexts/AuthenticationContext';
 
 const StyledRegister = styled(MuiContainer)`
-  &.Register-root {
-    height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .Register-inputGroup {
+    margin-bottom: 16px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-wrap: wrap;
+  }
 
-    .Register-inputGroup {
-      margin-bottom: 16px;
-      display: flex;
-      flex-direction: column;
+  .Register-firstNameInput {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-top-left-radius: 6px;
+    width: 50%;
+
+    .MuiInputBase-input {
+      border-top-left-radius: 5px;
     }
+  }
 
-    .Register-firstNameInput {
-      flex-grow: 1;
-      border: 1px solid #ccc;
-      border-right: none;
-      border-top-left-radius: 6px;
+  .Register-lastNameInput {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-top-right-radius: 6px;
+    width: 50%;
 
-      .MuiInputBase-input {
-        border-top-left-radius: 5px;
-      }
+    .MuiInputBase-input {
+      border-top-right-radius: 5px;
     }
+  }
 
-    .Register-lastNameInput {
-      flex-grow: 1;
-      border: 1px solid #ccc;
-      border-top-right-radius: 6px;
+  .Register-emailInput {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    width: 100%;
+  }
 
-      .MuiInputBase-input {
-        border-top-right-radius: 5px;
-      }
-    }
-
-    .Register-emailInput {
-      border-left: 1px solid #ccc;
-      border-right: 1px solid #ccc;
-    }
+  .PasswordInput-root {
+    width: 100%;
   }
 `;
 

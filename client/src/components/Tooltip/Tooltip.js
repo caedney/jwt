@@ -6,10 +6,8 @@ import MuiTooltip from '@mui/material/Tooltip';
 const StyledTooltip = styled(({ className, ...props }) => (
   <MuiTooltip {...props} classes={{ popper: className }} />
 ))`
-  &.Tooltip-root {
-    &[data-popper-placement*='top'] .MuiTooltip-tooltip {
-      margin-bottom: 10px;
-    }
+  &[data-popper-placement*='top'] .MuiTooltip-tooltip {
+    margin-bottom: 10px;
   }
 `;
 

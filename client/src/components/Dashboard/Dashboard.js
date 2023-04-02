@@ -9,17 +9,15 @@ import dashboardApi from '../../api/dashboard';
 import AuthenticationContext from '../../contexts/AuthenticationContext';
 
 const StyledDashboard = styled(MuiContainer)`
-  &.Dashboard-root {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-    .Dashboard-welcome {
-      font-size: 1.5rem;
-      margin-bottom: 1em;
-    }
+  .Dashboard-welcome {
+    font-size: 1.5rem;
+    margin-bottom: 1em;
   }
 `;
 

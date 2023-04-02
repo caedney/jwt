@@ -14,28 +14,26 @@ import authenticationApi from '../../api/authentication';
 import AuthenticationContext from '../../contexts/AuthenticationContext';
 
 const StyledSignIn = styled(MuiContainer)`
-  &.SignIn-root {
-    height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .SignIn-inputGroup {
+    margin-bottom: 16px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+  }
 
-    .SignIn-inputGroup {
-      margin-bottom: 16px;
-      display: flex;
-      flex-direction: column;
-    }
+  .SignIn-emailInput {
+    border: 1px solid #ccc;
+    border-bottom: none;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 
-    .SignIn-emailInput {
-      border: 1px solid #ccc;
-      border-bottom: none;
-      border-top-left-radius: 6px;
-      border-top-right-radius: 6px;
-
-      .MuiInputBase-input {
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-      }
+    .MuiInputBase-input {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
     }
   }
 `;

@@ -12,29 +12,27 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const StyledPasswordInput = styled(MuiBox)`
-  &.PasswordInput-root {
-    position: relative;
+  position: relative;
 
-    .MuiInputBase-root {
-      border: 1px solid #ccc;
-      border-bottom-left-radius: 6px;
-      border-bottom-right-radius: 6px;
-      width: 100%;
+  .MuiInputBase-root {
+    border: 1px solid #ccc;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    width: 100%;
 
-      .MuiInputBase-input {
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-        padding-right: 50px;
-      }
+    .MuiInputBase-input {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      padding-right: 50px;
     }
+  }
 
-    .MuiIconButton-root {
-      position: absolute;
-      right: 9px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 1;
-    }
+  .MuiIconButton-root {
+    position: absolute;
+    right: 9px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
   }
 `;
 
