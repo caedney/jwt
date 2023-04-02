@@ -7,17 +7,17 @@ function verifyCredentials(req, res, next) {
 
   if (req.path === '/register') {
     if (![email, firstName, lastName, password].every(Boolean)) {
-      return res.status(401).json('Missing Credentials');
+      return res.status(401).send({ message: 'Missing credentials' });
     } else if (isValidEmail(email) === false) {
-      return res.status(401).json('Invalid email');
+      return res.status(401).send({ message: 'Invalid email' });
     }
   }
 
   if (req.path === '/sign-in') {
     if (![email, password].every(Boolean)) {
-      return res.status(401).json('Missing Credentials');
+      return res.status(401).send({ message: 'Missing credentials' });
     } else if (isValidEmail(email) === false) {
-      return res.status(401).json('Invalid email');
+      return res.status(401).send({ message: 'Invalid email' });
     }
   }
 

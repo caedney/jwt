@@ -24,7 +24,7 @@ router.post('/register', verifyCredentials, async (req, res) => {
 
     // Return Unauthenticated status code if user exists
     if (checkUser.rows.length > 0) {
-      return res.status(401).json('User already exists');
+      return res.status(401).send({ message: 'User already exists' });
     }
 
     // Decrypt user password
@@ -49,7 +49,9 @@ router.post('/register', verifyCredentials, async (req, res) => {
       accessToken,
     });
   } catch (error) {
-    return res.status(500);
+    return res.status(500).send({
+      message: 'Internal server error',
+    });
   }
 });
 
@@ -67,7 +69,7 @@ router.post('/sign-in', verifyCredentials, async (req, res) => {
 
     // Return Unauthenticated status code if user doesn't exist
     if (user.rows.length < 1) {
-      return res.status(404).send({ message: 'User Not found.' });
+      return res.status(404).send({ message: 'User not found' });
     }
 
     // Check if the password matches in database
@@ -79,7 +81,7 @@ router.post('/sign-in', verifyCredentials, async (req, res) => {
     if (isPasswordValid === false) {
       return res.status(401).send({
         accessToken: null,
-        message: 'Invalid password!',
+        message: 'Invalid password',
       });
     }
 
@@ -94,7 +96,9 @@ router.post('/sign-in', verifyCredentials, async (req, res) => {
       accessToken,
     });
   } catch (error) {
-    return res.status(500);
+    return res.status(500).send({
+      message: 'Internal server error',
+    });
   }
 });
 
@@ -107,7 +111,9 @@ router.get('/verify', verifyToken, async (req, res) => {
       verified: true,
     });
   } catch (error) {
-    return res.status(500);
+    return res.status(500).send({
+      message: 'Internal server error',
+    });
   }
 });
 

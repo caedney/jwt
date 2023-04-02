@@ -17,7 +17,9 @@ router.get('/', verifyToken, async (req, res) => {
 
     return res.json(user.rows[0]);
   } catch (error) {
-    return res.status(500);
+    return res.status(500).send({
+      message: 'Internal server error',
+    });
   }
 });
 

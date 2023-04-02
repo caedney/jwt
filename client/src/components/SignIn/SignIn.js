@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
+import MuiAlert from '@mui/material/Alert';
 import MuiBox from '@mui/material/Box';
 import MuiContainer from '@mui/material/Container';
 import MuiInputBase from '@mui/material/InputBase';
 import MuiLink from '@mui/material/Link';
+import MuiSnackbar from '@mui/material/Snackbar';
 import MuiTypography from '@mui/material/Typography';
 
 import Button from '../Button';
@@ -46,6 +48,8 @@ const SignIn = (props) => {
   const navigate = useNavigate();
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [open, setOpen] = React.useState(false);
+  const [error, setError] = React.useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,6 +66,8 @@ const SignIn = (props) => {
       navigate('/');
     } catch (error) {
       console.log(error);
+      setOpen(true);
+      setError(error.response.data.message);
     }
   };
 
@@ -69,41 +75,62 @@ const SignIn = (props) => {
     return <Navigate replace to="/" />;
   }
 
+  function onClose() {
+    setOpen(false);
+  }
+
   return (
-    <StyledSignIn className="SignIn-root" maxWidth="sm" align="center">
-      <MuiTypography variant="h1">Please sign in</MuiTypography>
-      <form onSubmit={handleSubmit}>
-        <MuiBox className="SignIn-inputGroup">
-          <MuiInputBase
-            className="SignIn-emailInput"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            name="email"
-            placeholder="Email address"
-          />
-          <PasswordInput
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </MuiBox>
-        <Button variant="contained" size="medium" type="submit">
-          Sign in
-        </Button>
-      </form>
-      <MuiBox>
-        No account ?{' '}
-        <MuiLink
-          href="/register"
-          onClick={(e) => {
-            e.preventDefault();
-            navigate('/register');
-          }}
+    <>
+      <MuiSnackbar
+        open={open}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+      >
+        <MuiAlert
+          severity="error"
+          onClose={onClose}
+          sx={{ border: '1px solid rgba(95, 33, 32, 0.16)' }}
         >
-          Create one here
-        </MuiLink>
-      </MuiBox>
-    </StyledSignIn>
+          <>{error}</>
+        </MuiAlert>
+      </MuiSnackbar>
+      <StyledSignIn className="SignIn-root" maxWidth="sm" align="center">
+        <MuiTypography variant="h1">Please sign in</MuiTypography>
+        <form onSubmit={handleSubmit}>
+          <MuiBox className="SignIn-inputGroup">
+            <MuiInputBase
+              className="SignIn-emailInput"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              name="email"
+              placeholder="Email address"
+            />
+            <PasswordInput
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </MuiBox>
+          <Button variant="contained" size="medium" type="submit">
+            Sign in
+          </Button>
+        </form>
+        <MuiBox>
+          No account ?{' '}
+          <MuiLink
+            href="/register"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate('/register');
+            }}
+          >
+            Create one here
+          </MuiLink>
+        </MuiBox>
+      </StyledSignIn>
+    </>
   );
 };
 
