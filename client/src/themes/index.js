@@ -52,14 +52,6 @@ theme = createTheme(theme, {
     },
     MuiButtonBase: {
       defaultProps: { disableRipple: true },
-      styleOverrides: {
-        root: {
-          '&:focus-visible': {
-            outline: 'none',
-            boxShadow: `0 0 0 4px ${alpha(theme.palette.primary.main, 0.25)}`,
-          },
-        },
-      },
     },
     MuiCssBaseline: {
       styleOverrides: css`
@@ -78,28 +70,6 @@ theme = createTheme(theme, {
         root: {
           transitionProperty:
             'background-color, box-shadow, border-color, color',
-        },
-      },
-    },
-    MuiInputBase: {
-      styleOverrides: {
-        root: {
-          backgroundColor: 'rgba(255, 255, 255, 1)',
-        },
-        input: {
-          'transitionProperty': 'box-shadow',
-          'transitionDuration': `${theme.transitions.duration.short}ms`,
-          'transitionTimingFunction': theme.transitions.easing.easeInOut,
-          'height': '1.5em',
-          'padding': '12px 16px',
-          '&::-webkit-input-placeholder': {
-            opacity: 0.56,
-          },
-          '&:focus-visible': {
-            outline: 'none',
-            boxShadow: `0 0 0 4px ${alpha(theme.palette.primary.main, 0.25)}`,
-            zIndex: 1,
-          },
         },
       },
     },

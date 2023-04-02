@@ -2,10 +2,10 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { styled } from '@mui/material/styles';
 import MuiBox from '@mui/material/Box';
-import MuiIconButton from '@mui/material/IconButton';
-import MuiInputBase from '@mui/material/InputBase';
 import MuiSvgIcon from '@mui/material/SvgIcon';
 
+import IconButton from '../IconButton';
+import Input from '../Input';
 import Tooltip from '../Tooltip';
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -37,7 +37,7 @@ const StyledPasswordInput = styled(MuiBox)`
 `;
 
 const PasswordInput = (props) => {
-  const { className, onChange, value, ...other } = props;
+  const { className, color = 'primary', onChange, value, ...other } = props;
 
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -52,9 +52,10 @@ const PasswordInput = (props) => {
       className={clsx('PasswordInput-root', className)}
       {...other}
     >
-      <MuiInputBase
+      <Input
         value={value}
         onChange={onChange}
+        color={color}
         type={showPassword ? 'text' : 'password'}
         name="password"
         placeholder="Password"
@@ -63,17 +64,17 @@ const PasswordInput = (props) => {
         placement="top"
         title={showPassword ? 'Hide password' : 'Show password'}
       >
-        <MuiIconButton
+        <IconButton
           aria-label="toggle password visibility"
           onClick={handleClickShowPassword}
           onMouseDown={handleMouseDownPassword}
-          color="primary"
+          color={color}
         >
           <MuiSvgIcon
             fontSize="small"
             component={showPassword ? VisibilityOffIcon : VisibilityIcon}
           />
-        </MuiIconButton>
+        </IconButton>
       </Tooltip>
     </StyledPasswordInput>
   );

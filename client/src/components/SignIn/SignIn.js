@@ -4,12 +4,12 @@ import { styled } from '@mui/material/styles';
 import MuiAlert from '@mui/material/Alert';
 import MuiBox from '@mui/material/Box';
 import MuiContainer from '@mui/material/Container';
-import MuiInputBase from '@mui/material/InputBase';
 import MuiLink from '@mui/material/Link';
 import MuiSnackbar from '@mui/material/Snackbar';
 import MuiTypography from '@mui/material/Typography';
 
 import Button from '../Button';
+import Input from '../Input';
 import PasswordInput from '../PasswordInput';
 
 import authenticationApi from '../../api/authentication';
@@ -75,9 +75,11 @@ const SignIn = (props) => {
     return <Navigate replace to="/" />;
   }
 
-  function onClose() {
-    setOpen(false);
-  }
+  const onClose = (event, reason) => {
+    if (reason !== 'clickaway') {
+      setOpen(false);
+    }
+  };
 
   return (
     <>
@@ -87,6 +89,8 @@ const SignIn = (props) => {
           vertical: 'top',
           horizontal: 'center',
         }}
+        autoHideDuration={4000}
+        onClose={onClose}
       >
         <MuiAlert
           severity="error"
@@ -100,7 +104,7 @@ const SignIn = (props) => {
         <MuiTypography variant="h1">Please sign in</MuiTypography>
         <form onSubmit={handleSubmit}>
           <MuiBox className="SignIn-inputGroup">
-            <MuiInputBase
+            <Input
               className="SignIn-emailInput"
               value={email}
               onChange={(e) => setEmail(e.target.value)}

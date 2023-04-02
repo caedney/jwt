@@ -1,15 +1,26 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { styled } from '@mui/material/styles';
+import { alpha, css, styled } from '@mui/material/styles';
 import MuiButton from '@mui/material/Button';
 
-const StyledButton = styled(MuiButton)``;
+const StyledButton = styled(MuiButton)(
+  ({ theme, color }) => css`
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 4px ${alpha(theme.palette[color].main, 0.25)};
+    }
+  `
+);
 
 const Button = (props) => {
-  const { children, className, ...other } = props;
+  const { children, className, color = 'primary', ...other } = props;
 
   return (
-    <StyledButton className={clsx('Button-root', className)} {...other}>
+    <StyledButton
+      className={clsx('Button-root', className)}
+      color={color}
+      {...other}
+    >
       {children}
     </StyledButton>
   );

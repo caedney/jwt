@@ -4,12 +4,12 @@ import { styled } from '@mui/material/styles';
 import MuiAlert from '@mui/material/Alert';
 import MuiBox from '@mui/material/Box';
 import MuiContainer from '@mui/material/Container';
-import MuiInputBase from '@mui/material/InputBase';
 import MuiLink from '@mui/material/Link';
 import MuiSnackbar from '@mui/material/Snackbar';
 import MuiTypography from '@mui/material/Typography';
 
 import Button from '../Button';
+import Input from '../Input';
 import PasswordInput from '../PasswordInput';
 
 import authenticationApi from '../../api/authentication';
@@ -95,9 +95,11 @@ const Register = () => {
     }
   };
 
-  function onClose() {
-    setOpen(false);
-  }
+  const onClose = (event, reason) => {
+    if (reason !== 'clickaway') {
+      setOpen(false);
+    }
+  };
 
   return (
     <>
@@ -107,6 +109,8 @@ const Register = () => {
           vertical: 'top',
           horizontal: 'center',
         }}
+        autoHideDuration={4000}
+        onClose={onClose}
       >
         <MuiAlert
           severity="error"
@@ -120,7 +124,7 @@ const Register = () => {
         <MuiTypography variant="h1">Please register</MuiTypography>
         <form onSubmit={handleSubmit}>
           <MuiBox className="Register-inputGroup">
-            <MuiInputBase
+            <Input
               className="Register-firstNameInput"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
@@ -128,7 +132,7 @@ const Register = () => {
               name="first name"
               placeholder="First name"
             />
-            <MuiInputBase
+            <Input
               className="Register-lastNameInput"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
@@ -136,7 +140,7 @@ const Register = () => {
               name="last name"
               placeholder="Last name"
             />
-            <MuiInputBase
+            <Input
               className="Register-emailInput"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
