@@ -41,8 +41,12 @@ theme = createTheme(theme, {
           },
         },
         sizeMedium: {
+          fontSize: '1rem',
+          padding: '6px 18px',
+        },
+        sizeLarge: {
           fontSize: '1.0625rem',
-          padding: '6px 20px',
+          padding: '7px 20px',
         },
       },
     },
