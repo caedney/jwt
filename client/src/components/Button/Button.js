@@ -12,11 +12,12 @@ const StyledButton = styled(MuiButton)(
   `
 );
 
-const Button = (props) => {
+const Button = React.forwardRef(function Button(props, ref) {
   const { children, className, color = 'primary', ...other } = props;
 
   return (
     <StyledButton
+      ref={ref}
       className={clsx('Button-root', className)}
       color={color}
       {...other}
@@ -24,6 +25,6 @@ const Button = (props) => {
       {children}
     </StyledButton>
   );
-};
+});
 
 export default Button;

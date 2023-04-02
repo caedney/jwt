@@ -36,7 +36,7 @@ const StyledPasswordInput = styled(MuiBox)`
   }
 `;
 
-const PasswordInput = (props) => {
+const PasswordInput = React.forwardRef(function PasswordInput(props, ref) {
   const { className, color = 'primary', onChange, value, ...other } = props;
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -49,6 +49,7 @@ const PasswordInput = (props) => {
 
   return (
     <StyledPasswordInput
+      ref={ref}
       className={clsx('PasswordInput-root', className)}
       {...other}
     >
@@ -78,6 +79,6 @@ const PasswordInput = (props) => {
       </Tooltip>
     </StyledPasswordInput>
   );
-};
+});
 
 export default PasswordInput;

@@ -11,11 +11,12 @@ const StyledTooltip = styled(({ className, ...props }) => (
   }
 `;
 
-const Tooltip = (props) => {
+const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const { children, className, ...other } = props;
 
   return (
     <StyledTooltip
+      ref={ref}
       className={clsx('Tooltip-root', className)}
       arrow={false}
       enterDelay={100}
@@ -25,6 +26,6 @@ const Tooltip = (props) => {
       {children}
     </StyledTooltip>
   );
-};
+});
 
 export default Tooltip;

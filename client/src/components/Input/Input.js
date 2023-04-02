@@ -27,16 +27,17 @@ const StyledInput = styled(MuiInputBase)(
   `
 );
 
-const Input = (props) => {
+const Input = React.forwardRef(function Input(props, ref) {
   const { className, color = 'primary', ...other } = props;
 
   return (
     <StyledInput
+      ref={ref}
       className={clsx('Input-root', className)}
       color={color}
       {...other}
     />
   );
-};
+});
 
 export default Input;

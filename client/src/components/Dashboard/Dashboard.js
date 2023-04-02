@@ -21,7 +21,7 @@ const StyledDashboard = styled(MuiContainer)`
   }
 `;
 
-const Dashboard = () => {
+const Dashboard = React.forwardRef(function Dashboard(props, ref) {
   const { token, setToken, authenticated, setAuthenticated } = React.useContext(
     AuthenticationContext
   );
@@ -61,7 +61,12 @@ const Dashboard = () => {
   }
 
   return (
-    <StyledDashboard className="Dashboard-root" maxWidth="sm" align="center">
+    <StyledDashboard
+      ref={ref}
+      className="Dashboard-root"
+      maxWidth="sm"
+      align="center"
+    >
       <MuiTypography variant="h1">{`Welcome ${firstName} ${lastName}`}</MuiTypography>
       <MuiTypography className="Dashboard-welcome">{email}</MuiTypography>
       <Button variant="contained" size="medium" onClick={signout}>
@@ -69,6 +74,6 @@ const Dashboard = () => {
       </Button>
     </StyledDashboard>
   );
-};
+});
 
 export default Dashboard;

@@ -61,7 +61,7 @@ const StyledRegister = styled(MuiContainer)`
   }
 `;
 
-const Register = () => {
+const Register = React.forwardRef(function Register(props, ref) {
   const { setAuthenticated, setToken } = React.useContext(
     AuthenticationContext
   );
@@ -120,7 +120,12 @@ const Register = () => {
           <>{error}</>
         </MuiAlert>
       </MuiSnackbar>
-      <StyledRegister className="Register-root" maxWidth="sm" align="center">
+      <StyledRegister
+        ref={ref}
+        className="Register-root"
+        maxWidth="sm"
+        align="center"
+      >
         <MuiTypography variant="h1">Please register</MuiTypography>
         <form onSubmit={handleSubmit}>
           <MuiBox className="Register-inputGroup">
@@ -172,6 +177,6 @@ const Register = () => {
       </StyledRegister>
     </>
   );
-};
+});
 
 export default Register;

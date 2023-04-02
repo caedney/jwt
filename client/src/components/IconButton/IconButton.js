@@ -12,11 +12,12 @@ const StyledIconButton = styled(MuiIconButton)(
   `
 );
 
-const IconButton = (props) => {
+const IconButton = React.forwardRef(function IconButton(props, ref) {
   const { children, className, color = 'primary', ...other } = props;
 
   return (
     <StyledIconButton
+      ref={ref}
       className={clsx('IconButton-root', className)}
       color={color}
       {...other}
@@ -24,6 +25,6 @@ const IconButton = (props) => {
       {children}
     </StyledIconButton>
   );
-};
+});
 
 export default IconButton;

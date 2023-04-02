@@ -40,7 +40,7 @@ const StyledSignIn = styled(MuiContainer)`
   }
 `;
 
-const SignIn = (props) => {
+const SignIn = React.forwardRef(function SignIn(props, ref) {
   const { authenticated, setAuthenticated, setToken } = React.useContext(
     AuthenticationContext
   );
@@ -100,7 +100,12 @@ const SignIn = (props) => {
           <>{error}</>
         </MuiAlert>
       </MuiSnackbar>
-      <StyledSignIn className="SignIn-root" maxWidth="sm" align="center">
+      <StyledSignIn
+        ref={ref}
+        className="SignIn-root"
+        maxWidth="sm"
+        align="center"
+      >
         <MuiTypography variant="h1">Please sign in</MuiTypography>
         <form onSubmit={handleSubmit}>
           <MuiBox className="SignIn-inputGroup">
@@ -136,6 +141,6 @@ const SignIn = (props) => {
       </StyledSignIn>
     </>
   );
-};
+});
 
 export default SignIn;
